@@ -1,45 +1,41 @@
 import { FC } from 'react';
 import Card, { CardVariant } from './components/Card';
-import UserList from './components/UserList';
-import { IUser } from './types';
+import Events from './components/Events';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import PageUsers from './pages/PageUsers';
+import PageTodo from './pages/PageTodo';
 
 interface AppProps {}
 
 const App: FC<AppProps> = () => {
-	const users: IUser[] = [
-		{
-			id: 1,
-			name: 'Leanne Graham',
-			email: 'Sincere@april.biz',
-			address: {
-				street: 'Kulas Light',
-				city: 'Gwenborough',
-				zipcode: '92998-3874',
-			},
-		},
-		{
-			id: 2,
-			name: 'Ervin Howell',
-			email: 'Shanna@melissa.tv',
-			address: {
-				street: 'Victor Plains',
-				city: 'Wisokyburgh',
-				zipcode: '90566-7771',
-			},
-		},
-	];
-
 	return (
-		<div>
+		<>
 			<Card
 				width='50%'
-				height='50px'
+				height='auto'
+				padding='15px'
 				variant={CardVariant.outlined}
-				onclick={() => console.log('clicked')}
 			>
-				<UserList users={users} />
+				<Events />
 			</Card>
-		</div>
+			<BrowserRouter>
+				<Card
+					width='50%'
+					height='auto'
+					padding='15px'
+					variant={CardVariant.outlined}
+				>
+					<Link to={'/'}> Домой </Link>
+					<Link to={'/todos'}> Тудушки </Link>
+					<Link to={'/users'}> Юзеры </Link>
+				</Card>
+				<Routes>
+					{/* <Route path='/'/> */}
+					<Route path='/users' element={<PageUsers />} />
+					<Route path='/todos' element={<PageTodo />} />
+				</Routes>
+			</BrowserRouter>
+		</>
 	);
 };
 

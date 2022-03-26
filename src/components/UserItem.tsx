@@ -7,7 +7,7 @@ interface UserItemProps {
 
 const UserItem: FunctionComponent<UserItemProps> = ({ user }) => {
 	return (
-		<div>
+		<div style={{padding:'10px', border:'1px solid lightgray'}}>
 			{user.id}. {user.name} проживает в городе {user.address.city}
 			на улице {user.address.street}
 		</div>
